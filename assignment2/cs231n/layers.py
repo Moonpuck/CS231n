@@ -176,6 +176,7 @@ def batchnorm_forward(x, gamma, beta, bn_param):
     y_norm = gamma * x_norm + beta
     running_mean = momentum * running_mean + (1 - momentum) * sample_mean
     running_var = momentum * running_var + (1 - momentum) * sample_var
+    
     #############################################################################
     #                             END OF YOUR CODE                              #
     #############################################################################
