@@ -170,7 +170,12 @@ def batchnorm_forward(x, gamma, beta, bn_param):
     # the momentum variable to update the running mean and running variance,    #
     # storing your result in the running_mean and running_var variables.        #
     #############################################################################
-    pass
+    sample_mean = np.mean(x, axis=0, keepdims=True)
+    sample_var = np.var(x, axis=0, keepdims=True)
+    x_norm = (x - sample_mean) / np.sqrt(sample_var + eps)
+    y_norm = gamma * x_norm + beta
+    running_mean = momentum * running_mean + (1 - momentum) * sample_mean
+    running_var = momentum * running_var + (1 - momentum) * sample_var
     #############################################################################
     #                             END OF YOUR CODE                              #
     #############################################################################
